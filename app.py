@@ -23,7 +23,15 @@ def getProduct(product_name):
         return jsonify({"product": productsFound[0]})
     return jsonify({"message": "Product not found"})
 
-
+@app.route("/products", methods=["POST"])
+def postProduct():
+    new_product = {
+        "name": request.json["name"],
+        "price": request.json["price"],
+        "quantity": request.json["quantity"]
+    }
+    products.append(new_product)
+    return jsonify({"message": "Product added successfully", "products": products})
 
 
 # Necesito inicializarlo
